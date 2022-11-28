@@ -1,4 +1,7 @@
 import React from 'react'
+import { Posts } from '../../data'
+import Post from '../post/Post'
+import Share from '../share/Share'
 import Stories from '../stories/Stories'
 import "./feed.scss"
 const Feed = () => {
@@ -6,6 +9,11 @@ const Feed = () => {
     <div className='feed'>
       <div className="feddWrapper">
         <Stories/>
+        <Share/>
+        {Posts.map((p) => (
+         <Post key={p.id}post={p}/>
+        ))}
+        
       </div>
     </div>
   )
