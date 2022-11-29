@@ -8,6 +8,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [Feed](#feed)
 - [Rightbar](#rightbar)
 - [Profile](#profile)
+- [EditProfile](#editprofile)
 
 ## Minor Sections
 - [Friends-Sidebar](#friends-sidebar)
@@ -115,6 +116,12 @@ To use the ProfileRightBar, [click here.](src/components/profileRightBar)
 
 To use the Profile, [click here.](src/pages/profile)
 
+## EditProfile
+
+- TODO: ScreenShots Below 👇
+![chatbook-Edit-profile](https://user-images.githubusercontent.com/102934270/204612392-5f099888-1cd7-4b26-986f-61f20fc6dea5.jpg)
+
+To use the EditProfile, [click here.](src/pages/editProfile)
 
 
 
