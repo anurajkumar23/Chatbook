@@ -1,6 +1,6 @@
 # Chatbook on React 
 
-## This Project in On-working for details you Checkout
+## This Project is On-working for more details you can Checkout
 
 - A simple, light and Full responsive UI
 - Try to be clone of Facebook
