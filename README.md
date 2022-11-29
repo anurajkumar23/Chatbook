@@ -77,28 +77,28 @@ To use the Post, [click here.](src/components/post)
 - TODO: ScreenShots Below 👇
 ![feed](https://user-images.githubusercontent.com/102934270/204344348-869b4051-4f48-4205-9fd8-cd9bec008003.gif)
 
-To use the Post, [click here.](src/components/feed)
+To use the Feed, [click here.](src/components/feed)
 
 ## RightBarhome
 
 - TODO: ScreenShots Below 👇
 ![Rightbarhome](https://user-images.githubusercontent.com/102934270/204549639-d32d90ae-006e-4105-9abc-015e20ab2035.jpg)
 
-To use the Post, [click here.](src/components/rightbarhome)
+To use the RightBarhome, [click here.](src/components/rightbarhome)
 
 ## Online
 
 - TODO: ScreenShots Below 👇
 ![Chatbook-online](https://user-images.githubusercontent.com/102934270/204549947-2607ef9c-cbcb-4806-9198-2cddcb0aa3b4.jpg)
 
-To use the Post, [click here.](src/components/online)
+To use the Online, [click here.](src/components/online)
 
 ## Rightbar
 
 - TODO: ScreenShots Below 👇
 ![Rightbar](https://user-images.githubusercontent.com/102934270/204550374-72b0b7c0-c83f-4971-ae76-573a8353e0d5.gif)
 
-To use the Post, [click here.](src/components/rightbar)
+To use the Rightbar, [click here.](src/components/rightbar)
 
 ## ProfileRightBar
 
@@ -106,14 +106,14 @@ To use the Post, [click here.](src/components/rightbar)
 
 ![chatbook-ProfileRightBar](https://user-images.githubusercontent.com/102934270/204552297-1fa83fa6-9702-4ef2-bc2a-5fb2350d45af.jpg)
 
-To use the Post, [click here.](src/components/profileRightBar)
+To use the ProfileRightBar, [click here.](src/components/profileRightBar)
 
 ## Profile
 
 - TODO: ScreenShots Below 👇
 ![Profile](https://user-images.githubusercontent.com/102934270/204552675-b5538397-dff2-48f2-b283-c064a8dbb483.gif)
 
-To use the Post, [click here.](src/pages/profile)
+To use the Profile, [click here.](src/pages/profile)
 
 
 
