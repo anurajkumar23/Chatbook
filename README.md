@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with Chatbook(Try to be clone of Facebook) on React app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Project in On-working for details you Checkout
 
 ## Major Sections
 - [Navbar](#navbar)
