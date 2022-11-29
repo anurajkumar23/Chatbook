@@ -1,6 +1,10 @@
-# Getting Started with Chatbook(Try to be clone of Facebook) on React app
+# Chatbook on React 
 
-This Project in On-working for details you Checkout
+## This Project in On-working for details you Checkout
+
+- A simple, light and Full responsive UI
+- Try to be clone of Facebook
+- Made with Fronted and Backend both
 
 ## Major Sections
 - [Navbar](#navbar)
