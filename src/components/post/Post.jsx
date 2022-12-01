@@ -3,6 +3,7 @@ import { IconButton } from "@mui/material";
 import React from "react";
 import { Users } from "../../data";
 import "./post.scss";
+import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
   console.log(post);
@@ -11,11 +12,13 @@ const Post = ({ post }) => {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
+            <Link to="/profile/userId" >
             <img
               src={Users.filter((u) => u.id === post.userId)[0].profilePicture}
               alt=""
               className="postProfileImg"
             />
+            </Link>
             <span className="postUsername">
               {Users.filter((u) => u.id === post.userId)[0].username}
             </span>

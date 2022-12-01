@@ -102,7 +102,9 @@
                 display: flex;
                 align-items: center;
                 padding: 7px;
+                border-radius:5px ;
                 cursor: pointer;
+                transition: 0.5s;
 
                 .footerIcon{
                     color: #333;
@@ -114,6 +116,11 @@
                  font-weight: 500;
                 }
             }
+
+        }
+        .postBottomFooterItem:hover{
+            background-color: rgba(0, 0, 0, 0.3);
+            
         }
     }
 }
