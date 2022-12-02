@@ -5,10 +5,13 @@ import EditProfile from "./pages/editProfile/EditProfile";
 import Profile from "./pages/profile/Profile";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import "./style/dark.scss"
+import { useContext } from 'react';
+import { DarkModeContext } from './context/darkModeContext';
 
 function App() {
+  const{ darkMode } =useContext(DarkModeContext)
   return (
-    <div className="app dark">
+    <div className={darkMode? "app dark" : "app"}>
     <BrowserRouter>
     <Routes>
       <Route path="/">
