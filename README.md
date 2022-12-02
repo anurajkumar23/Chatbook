@@ -13,6 +13,8 @@
 - [Rightbar](#rightbar)
 - [Profile](#profile)
 - [EditProfile](#editprofile)
+- [Login](#login)
+- [Register](#register)
 
 ## Minor Sections
 - [Friends-Sidebar](#friends-sidebar)
@@ -127,5 +129,18 @@ To use the Profile, [click here.](src/pages/profile)
 
 To use the EditProfile, [click here.](src/pages/editProfile)
 
+## Login
+
+- TODO: ScreenShots Below 👇
+![Chatbook-Login](https://user-images.githubusercontent.com/102934270/205131128-87a5fafb-63a0-4b4d-bccb-56c346c80757.jpg)
+
+To use the Login, [click here.](src/pages/login)
+
+## Register
+
+- TODO: ScreenShots Below 👇
+![Chatbook-Signup](https://user-images.githubusercontent.com/102934270/205131579-7844e865-a6cd-43f6-ab7e-2e9b667d1b13.jpg)
+
+To use the Login, [click here.](src/pages/register)
 
 
