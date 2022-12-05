@@ -15,6 +15,7 @@
 - [EditProfile](#editprofile)
 - [Login](#login)
 - [Register](#register)
+- [DarkMode](#darkmode)
 
 ## Minor Sections
 - [Friends-Sidebar](#friends-sidebar)
@@ -142,5 +143,13 @@ To use the Login, [click here.](src/pages/login)
 ![Chatbook-Signup](https://user-images.githubusercontent.com/102934270/205131579-7844e865-a6cd-43f6-ab7e-2e9b667d1b13.jpg)
 
 To use the Login, [click here.](src/pages/register)
+
+## DarkMode
+
+- TODO: ScreenShots Below 👇
+- 
+![chat-darkmode](https://user-images.githubusercontent.com/102934270/205351703-23bd00b7-b353-4653-b17b-d9bfa8fcbe5a.gif)
+
+To use the Login, [click here.](src/context)
 
 
