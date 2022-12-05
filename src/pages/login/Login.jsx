@@ -29,6 +29,7 @@ const Login = () => {
                   placeholder="Password"
                   id="password"
                   className="loginInput"
+                  minLength={6}
                   required
                 />
             
