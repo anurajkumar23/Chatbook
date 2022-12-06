@@ -4,17 +4,46 @@ import {
   PermMedia,
   VideoCameraFront,
 } from "@mui/icons-material";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../../firebase";
+import{ v4 as uuid } from "uuid" 
 import React, { useContext, useState } from "react";
 import "./share.scss";
 import {AuthContext} from "./../../context/AuthContext"
 
 const Share = () => {
+  const[error, setError] =useState(false)
   const {currentUser} =useContext(AuthContext)
   const[input,setInput] =useState("")
-  const [file, setFile] =useState(null);
+  const [img, setImg] =useState(null);
+ 
+  const  handlePost=()=>{
+    if(img){
+      const storageRef = ref(storage, uuid() );
+      
+      const uploadTask = uploadBytesResumable(storageRef, img);
+      
+      uploadTask.on(
+
+        (error) => {
+        setError(true)
+        }, 
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+         
+          });
+        }
+      );
+    }else{
+    
+    }
+  }
+  const handleKey = (e) =>{
+  e.code==="Enter" && handlePost()
+  }
 
   const removeImage = () =>{
-    setFile(null);
+    setImg(null);
   }
   // console.log(currentUser)
   return (
@@ -34,11 +63,12 @@ const Share = () => {
             value ={input}
             className="shareInput"
             onChange={(e) =>setInput(e.target.value)}
+            onKeyDown ={handleKey}
           />
         </div>
         <hr className="shareHr" />
-        {file && <div className="shareImgContainer">
-          <img src={URL.createObjectURL(file)} alt="" className="shareImg" />
+        {img && <div className="shareImgContainer">
+          <img src={URL.createObjectURL(img)} alt="" className="shareImg" />
           <Close className="shareCancelImg" onClick ={removeImage} />
           </div>}
         <div className="shareBottom">
@@ -58,7 +88,7 @@ const Share = () => {
                 id="file"
                 accept=".png,.jpeg,.jpg"
                 style={{ display: "none" }}
-                onChange ={(e) => setFile(e.target.files[0])}
+                onChange ={(e) => setImg(e.target.files[0])}
               />
             </label>
             <div className="shareOption">
