@@ -4,28 +4,36 @@ import {
   PermMedia,
   VideoCameraFront,
 } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./share.scss";
+import {AuthContext} from "./../../context/AuthContext"
 
 const Share = () => {
+  const {currentUser} =useContext(AuthContext)
+  const[input,setInput] =useState("")
   const [file, setFile] =useState(null);
 
   const removeImage = () =>{
     setFile(null);
   }
+  // console.log(currentUser)
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
           <img
-            src="/assets/person/user.jpg"
+            src={currentUser.photoURL}
             alt=""
             className="shareProfileImg"
           />
-          <input
+          <textarea
             type="text"
-            placeholder="What's on your mind Amber ?"
+            rows={2}
+            style={{resize:"none",overflow:"hidden"}}
+            placeholder={"What's on your mind " + currentUser.displayName + "?"}
+            value ={input}
             className="shareInput"
+            onChange={(e) =>setInput(e.target.value)}
           />
         </div>
         <hr className="shareHr" />
