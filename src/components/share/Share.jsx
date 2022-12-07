@@ -5,72 +5,123 @@ import {
   VideoCameraFront,
 } from "@mui/icons-material";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase";
-import{ v4 as uuid } from "uuid" 
+import { db, storage } from "../../firebase";
+import { v4 as uuid } from "uuid";
 import React, { useContext, useState } from "react";
 import "./share.scss";
-import {AuthContext} from "./../../context/AuthContext"
-
+import { AuthContext } from "./../../context/AuthContext";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  serverTimestamp,
+  Timestamp,
+  updateDoc,
+} from "firebase/firestore";
+import Picker from "@emoji-mart/react"
 const Share = () => {
-  const[error, setError] =useState(false)
-  const {currentUser} =useContext(AuthContext)
-  const[input,setInput] =useState("")
-  const [img, setImg] =useState(null);
- 
-  const  handlePost=()=>{
-    if(img){
-      const storageRef = ref(storage, uuid() );
-      
-      const uploadTask = uploadBytesResumable(storageRef, img);
-      
-      uploadTask.on(
+  const [error, setError] = useState(false);
+  const { currentUser } = useContext(AuthContext);
+  const [input, setInput] = useState("");
+  const [img, setImg] = useState(null);
+  const [showEmojis, setShowEmojis] = useState(false);
 
+  const handlePost = async () => {
+    if (img) {
+      const storageRef = ref(storage,"posts/" + uuid());
+
+      const uploadTask = uploadBytesResumable(storageRef, img);
+
+      uploadTask.on(
         (error) => {
-        setError(true)
-        }, 
+          setError(true);
+        },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-         
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+            await addDoc(collection(db, "posts"), {
+              uid: currentUser.uid,
+              photoURL: currentUser.photoURL,
+              displayName: currentUser.displayName,
+              input,
+              img: downloadURL,
+              timestamp: serverTimestamp(),
+            });
+            await updateDoc(doc(db, "usersPosts", currentUser.uid), {
+              messages: arrayUnion({
+                id: uuid(),
+                uid: currentUser.uid,
+                photoURL: currentUser.photoURL,
+                displayName: currentUser.displayName,
+                input,
+                img: downloadURL,
+                timestamp: Timestamp.now(),
+              }),
+            });
           });
         }
       );
-    }else{
-    
+    } else {
+      await addDoc(collection(db, "posts"), {
+        uid: currentUser.uid,
+        photoURL: currentUser.photoURL,
+        displayName: currentUser.displayName,
+        input,
+        timestamp: serverTimestamp(),
+      });
+      await updateDoc(doc(db, "usersPosts", currentUser.uid), {
+        messages: arrayUnion({
+          id: uuid(),
+          uid: currentUser.uid,
+          photoURL: currentUser.photoURL,
+          displayName: currentUser.displayName,
+          input,
+          timestamp: Timestamp.now(),
+        }),
+      });
     }
-  }
-  const handleKey = (e) =>{
-  e.code==="Enter" && handlePost()
-  }
-
-  const removeImage = () =>{
+    setInput("");
     setImg(null);
+    setShowEmojis(false); 
+  };
+  const handleKey = (e) => {
+    e.code === "Enter" && handlePost();
+  };
+
+  const addEmoji = (e) => {
+    let sym = e.unified.split("-")
+    let codesArray = []
+    sym.forEach((el) => codesArray.push("0x" + el))
+    let emoji= String.fromCodePoint(...codesArray)
+    setInput(input + emoji)
   }
+  const removeImage = () => {
+    setImg(null);
+  };
   // console.log(currentUser)
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img
-            src={currentUser.photoURL}
-            alt=""
-            className="shareProfileImg"
-          />
+          <img src={currentUser.photoURL} alt="" className="shareProfileImg" />
           <textarea
             type="text"
             rows={2}
-            style={{resize:"none",overflow:"hidden"}}
+            style={{ resize: "none", overflow: "hidden" }}
             placeholder={"What's on your mind " + currentUser.displayName + "?"}
-            value ={input}
+            value={input}
             className="shareInput"
-            onChange={(e) =>setInput(e.target.value)}
-            onKeyDown ={handleKey}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKey}
           />
         </div>
         <hr className="shareHr" />
-        {img && <div className="shareImgContainer">
-          <img src={URL.createObjectURL(img)} alt="" className="shareImg" />
-          <Close className="shareCancelImg" onClick ={removeImage} />
-          </div>}
+        {img && (
+          <div className="shareImgContainer">
+            <img src={URL.createObjectURL(img)} alt="" className="shareImg" />
+            <Close className="shareCancelImg" onClick={removeImage} />
+          </div>
+        )}
         <div className="shareBottom">
           <div className="shareOptions">
             <div className="shareOption">
@@ -88,10 +139,13 @@ const Share = () => {
                 id="file"
                 accept=".png,.jpeg,.jpg"
                 style={{ display: "none" }}
-                onChange ={(e) => setImg(e.target.files[0])}
+                onChange={(e) => setImg(e.target.files[0])}
               />
             </label>
-            <div className="shareOption">
+            <div
+              onClick={() => setShowEmojis(!showEmojis)}
+              className="shareOption"
+            >
               <EmojiEmotions
                 className="shareIcon"
                 style={{ color: "#bfc600ec" }}
@@ -100,6 +154,7 @@ const Share = () => {
             </div>
           </div>
         </div>
+        {showEmojis && <div className="emoji"><Picker onEmojiSelect={addEmoji} /></div>}
       </div>
     </div>
   );
