@@ -2,9 +2,9 @@
 
 ## This Project is On-working for more details you can Checkout
 
-- A simple, light and Full responsive UI
-- Try to be clone of Facebook
-- Made with Fronted and Backend both
+- A simple, light and Full responsive UI.
+- Try to be clone of Facebook.
+- Made with Fronted and Backend both.
 
 ## To use the Chatbook, [click here.](https://chattbook.netlify.app)
 
